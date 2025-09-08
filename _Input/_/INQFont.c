@@ -1,0 +1,59 @@
+#include"INQCore.h"
+
+void Inq_Font_IConstruct(Inq_Font_SInstance *const AInstance , Inq_String_SInstance const*const APath)
+{
+    Inq_String_IConstruct(&AInstance->FPath , Inq_String_IFind(APath , '/'));
+    Inq_Array_IConstructVoid(&AInstance->FTextArray , sizeof(Inq_Text_SInstance));
+    Inq_Debug_IAssertHandle(AInstance->FData = TTF_OpenFont(APath->FData , 16));
+    Inq_File_SInstance LEnglishFile;
+    Inq_File_IConstruct(&LEnglishFile , "Text/English.txt");
+    Inq_File_SInstance LRussianFile;
+    Inq_File_IConstruct(&LRussianFile , "Text/Russian.txt");
+    Inq_String_SInstance LEnglishString;
+    Inq_String_IConstructVoid(&LEnglishString);
+    Inq_String_SInstance LRussianString;
+    Inq_String_IConstructVoid(&LRussianString);
+    while(Inq_File_IReadString(&LEnglishFile , &LEnglishString) && Inq_File_IReadString(&LRussianFile , &LRussianString))
+    {
+        Inq_Array_IPush(&AInstance->FTextArray);
+        Inq_Text_IConstruct(Inq_Array_IGetLast(&AInstance->FTextArray) , AInstance->FData , &LEnglishString , &LRussianString);
+    }
+    Inq_String_IDeconstruct(&LEnglishString);
+    Inq_File_IDeconstruct(&LEnglishFile);
+    Inq_Array_ISort(&AInstance->FTextArray , &Inq_Text_ICompare);
+    for(Sint64 LIndex = 0 ; LIndex < AInstance->FTextArray.FCount ; LIndex++)
+    {
+        SDL_Log("%s\n" , AInstance->FTextArray.FData[LIndex].FString.FData);
+    }
+    SDL_Log("\n");
+}
+
+Inq_Text_SInstance const* Inq_Font_ISearch(Inq_Font_SInstance const*const AInstance , char const*const APath)
+{
+    Inq_String_SInstance LPath;
+    Inq_String_IConstruct(&LPath , APath);
+    Inq_Text_SInstance * LText = Inq_Array_ISearch(&AInstance->FTextArray , &LPath , &Inq_Text_ICompareText);
+    Inq_String_IDeconstruct(&LPath);
+    return(LText);
+}
+
+Sint32 Inq_Font_ICompare(Inq_String_SInstance const*const APath , Inq_Font_SInstance const*const AFont)
+{
+    return(Inq_String_ICompare(APath , &AFont->FPath));
+}
+
+Sint32 Inq_Font_ICompareFont(Inq_Font_SInstance const*const AA , Inq_Font_SInstance const*const AB)
+{
+    return(Inq_Font_ICompare(&AA->FPath , AB));
+}
+
+void Inq_Font_IDeconstruct(Inq_Font_SInstance *const AInstance)
+{
+    for(Sint64 LIndex = 0 ; LIndex < AInstance->FTextArray.FCount ; LIndex++)
+    {
+        Inq_Text_IDeconstruct(&AInstance->FTextArray.FData[LIndex]);
+    }
+    Inq_Array_IDeconstruct(&AInstance->FTextArray);
+    TTF_CloseFont(AInstance->FData);
+    Inq_String_IDeconstruct(&AInstance->FPath);
+}

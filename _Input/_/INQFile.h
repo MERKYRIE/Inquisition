@@ -1,0 +1,11 @@
+#pragma once
+
+struct Inq_File_SInstance
+{
+    SDL_IOStream * FData;
+};
+
+void Inq_File_IConstruct(Inq_File_SInstance *const AInstance , char const*const APath);
+Sint64 Inq_File_IRead(Inq_File_SInstance *const AInstance , void *const APointer , Sint64 ASize);
+bool Inq_File_IReadString(Inq_File_SInstance *const AInstance , Inq_String_SInstance *const AString);
+void Inq_File_IDeconstruct(Inq_File_SInstance *const AInstance);

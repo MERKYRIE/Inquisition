@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="_Input\_\INQCore.h" />
+    <ClInclude Include="_Input\_\INQDebug.h" />
+    <ClInclude Include="_Input\_\INQVideo.h" />
+    <ClInclude Include="_Input\_\INQIntegral.h" />
+    <ClInclude Include="_Input\_\INQTypeface.h" />
+    <ClInclude Include="_Input\_\INQFont.h" />
+    <ClInclude Include="_Input\_\INQText.h" />
+    <ClInclude Include="_Input\_\INQString.h" />
+    <ClInclude Include="_Input\_\INQReal.h" />
+    <ClInclude Include="_Input\_\INQGlob.h" />
+    <ClInclude Include="_Input\_\INQFile.h" />
+    <ClInclude Include="_Input\_\INQArray.h" />
+    <ClInclude Include="_Input\_\INQImage.h" />
+    <ClInclude Include="_Input\_\INQSpace.h" />
+    <ClInclude Include="_Input\_\INQInquisitor.h" />
+    <ClInclude Include="_Input\_\INQEntity.h" />
+    <ClInclude Include="_Input\_\INQPartition.h" />
+    <ClInclude Include="_Input\_\INQTerrain.h" />
+    <ClInclude Include="_Input\_\INQSurface.h" />
+    <ClInclude Include="_Input\_\INQRectangle.h" />
+    <ClInclude Include="_Input\_\INQTile.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="_Input\_\INQCore.c" />
+    <ClCompile Include="_Input\_\INQDebug.c" />
+    <ClCompile Include="_Input\_\INQVideo.c" />
+    <ClCompile Include="_Input\_\INQIntegral.c" />
+    <ClCompile Include="_Input\_\INQTypeface.c" />
+    <ClCompile Include="_Input\_\INQFont.c" />
+    <ClCompile Include="_Input\_\INQText.c" />
+    <ClCompile Include="_Input\_\INQString.c" />
+    <ClCompile Include="_Input\_\INQReal.c" />
+    <ClCompile Include="_Input\_\INQGlob.c" />
+    <ClCompile Include="_Input\_\INQFile.c" />
+    <ClCompile Include="_Input\_\INQArray.c" />
+    <ClCompile Include="_Input\_\INQImage.c" />
+    <ClCompile Include="_Input\_\INQSpace.c" />
+    <ClCompile Include="_Input\_\INQInquisitor.c" />
+    <ClCompile Include="_Input\_\INQEntity.c" />
+    <ClCompile Include="_Input\_\INQPartition.c" />
+    <ClCompile Include="_Input\_\INQTerrain.c" />
+    <ClCompile Include="_Input\_\INQSurface.c" />
+    <ClCompile Include="_Input\_\INQRectangle.c" />
+    <ClCompile Include="_Input\_\INQTile.c" />
+  </ItemGroup>
+</Project>
