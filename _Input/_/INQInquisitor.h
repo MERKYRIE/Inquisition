@@ -2,11 +2,11 @@
 
 struct Inq_Inquisitor_SInstance
 {
-    void (*FUpdate)(Inq_Inquisitor_SInstance const*const AInstance , Sint64 const AX , Sint64 const AY);
-    void (*FDeconstruct)(Inq_Inquisitor_SInstance *const AInstance);
-    Inq_Tile_SInstance FTile;
+    Inq_Sprite_SInstance FSprite;
 };
 
-void Inq_Inquisitor_IConstruct(Inq_Inquisitor_SInstance *const AInstance);
-void Inq_Inquisitor_IUpdate(Inq_Inquisitor_SInstance const*const AInstance , Sint64 const AX , Sint64 const AY);
-void Inq_Inquisitor_IDeconstruct(Inq_Inquisitor_SInstance *const AInstance);
+void Inq_Inquisitor_IInitialize(void);
+void Inq_Inquisitor_IConstruct(Inq_EntityData_UInstance *const AData , Sint64 const AX , Sint64 const AY);
+void Inq_Inquisitor_IUpdate(Inq_EntityData_UInstance const*const AData , Sint64 const AX , Sint64 const AY);
+void Inq_Inquisitor_IDeconstruct(Inq_EntityData_UInstance *const AData , Sint64 const AX , Sint64 const AY);
+void Inq_Inquisitor_IDeinitialize(void);

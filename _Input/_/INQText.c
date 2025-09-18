@@ -5,26 +5,11 @@ void Inq_Text_IConstruct(Inq_Text_SInstance *const AInstance , TTF_Font *const A
     Inq_String_IConstruct(&AInstance->FString , AString->FData);
     Inq_Debug_IAssertHandle(AInstance->FData = TTF_CreateText(Inq_Typeface_IGetEngine() , AFont , ALocalization->FData , ALocalization->FCount));
     Inq_Debug_IAssertCondition(TTF_SetTextColor(AInstance->FData , 100 , 100 , 100 , SDL_ALPHA_OPAQUE));
-}
-
-double Inq_Text_IGetWidth(Inq_Text_SInstance const*const AInstance)
-{
-    return(0.0);
-}
-
-double Inq_Text_IGetHeight(Inq_Text_SInstance const*const AInstance)
-{
-    return(0.0);
-}
-
-double Inq_Text_IGetMinimum(Inq_Text_SInstance const*const AInstance)
-{
-    return(0.0);
-}
-
-double Inq_Text_IGetMaximum(Inq_Text_SInstance const*const AInstance)
-{
-    return(0.0);
+    Sint32 LWidth;
+    Sint32 LHeight;
+    Inq_Debug_IAssertCondition(TTF_GetTextSize(AInstance->FData , &LWidth , &LHeight));
+    AInstance->FWidth = Inq_Video_IGetSquareCoordinate(LWidth);
+    AInstance->FHeight = Inq_Video_IGetSquareCoordinate(LHeight);
 }
 
 Sint32 Inq_Text_ICompare(Inq_String_SInstance const*const AString , Inq_Text_SInstance const*const AInstance)
@@ -35,6 +20,16 @@ Sint32 Inq_Text_ICompare(Inq_String_SInstance const*const AString , Inq_Text_SIn
 Sint32 Inq_Text_ICompareText(Inq_Text_SInstance const*const AA , Inq_Text_SInstance const*const AB)
 {
     return(Inq_Text_ICompare(&AA->FString , AB));
+}
+
+double Inq_Text_IGetWidth(Inq_Text_SInstance const*const AInstance)
+{
+    return(AInstance->FWidth);
+}
+
+double Inq_Text_IGetHeight(Inq_Text_SInstance const*const AInstance)
+{
+    return(AInstance->FHeight);
 }
 
 void Inq_Text_IDraw(Inq_Text_SInstance const*const AInstance , double const AX , double const AY)

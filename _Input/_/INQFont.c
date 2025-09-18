@@ -28,15 +28,6 @@ void Inq_Font_IConstruct(Inq_Font_SInstance *const AInstance , Inq_String_SInsta
     SDL_Log("\n");
 }
 
-Inq_Text_SInstance const* Inq_Font_ISearch(Inq_Font_SInstance const*const AInstance , char const*const APath)
-{
-    Inq_String_SInstance LPath;
-    Inq_String_IConstruct(&LPath , APath);
-    Inq_Text_SInstance * LText = Inq_Array_ISearch(&AInstance->FTextArray , &LPath , &Inq_Text_ICompareText);
-    Inq_String_IDeconstruct(&LPath);
-    return(LText);
-}
-
 Sint32 Inq_Font_ICompare(Inq_String_SInstance const*const APath , Inq_Font_SInstance const*const AFont)
 {
     return(Inq_String_ICompare(APath , &AFont->FPath));
@@ -45,6 +36,15 @@ Sint32 Inq_Font_ICompare(Inq_String_SInstance const*const APath , Inq_Font_SInst
 Sint32 Inq_Font_ICompareFont(Inq_Font_SInstance const*const AA , Inq_Font_SInstance const*const AB)
 {
     return(Inq_Font_ICompare(&AA->FPath , AB));
+}
+
+Inq_Text_SInstance const* Inq_Font_ISearch(Inq_Font_SInstance const*const AInstance , char const*const APath)
+{
+    Inq_String_SInstance LPath;
+    Inq_String_IConstruct(&LPath , APath);
+    Inq_Text_SInstance * LText = Inq_Array_ISearch(&AInstance->FTextArray , &LPath , &Inq_Text_ICompareText);
+    Inq_String_IDeconstruct(&LPath);
+    return(LText);
 }
 
 void Inq_Font_IDeconstruct(Inq_Font_SInstance *const AInstance)

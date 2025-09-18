@@ -14,14 +14,21 @@
     <ClInclude Include="_Input\_\INQFile.h" />
     <ClInclude Include="_Input\_\INQArray.h" />
     <ClInclude Include="_Input\_\INQImage.h" />
-    <ClInclude Include="_Input\_\INQSpace.h" />
     <ClInclude Include="_Input\_\INQInquisitor.h" />
     <ClInclude Include="_Input\_\INQEntity.h" />
     <ClInclude Include="_Input\_\INQPartition.h" />
     <ClInclude Include="_Input\_\INQTerrain.h" />
-    <ClInclude Include="_Input\_\INQSurface.h" />
     <ClInclude Include="_Input\_\INQRectangle.h" />
-    <ClInclude Include="_Input\_\INQTile.h" />
+    <ClInclude Include="_Input\_\INQName.h" />
+    <ClInclude Include="_Input\_\INQAtlas.h" />
+    <ClInclude Include="_Input\_\INQWall.h" />
+    <ClInclude Include="_Input\_\INQSprite.h" />
+    <ClInclude Include="_Input\_\INQPlayer.h" />
+    <ClInclude Include="_Input\_\INQList.h" />
+    <ClInclude Include="_Input\_\INQPointer.h" />
+    <ClInclude Include="_Input\_\INQNode.h" />
+    <ClInclude Include="_Input\_\INQEntityStorage.h" />
+    <ClInclude Include="_Input\_\INQEntityData.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="_Input\_\INQCore.c" />
@@ -37,13 +44,20 @@
     <ClCompile Include="_Input\_\INQFile.c" />
     <ClCompile Include="_Input\_\INQArray.c" />
     <ClCompile Include="_Input\_\INQImage.c" />
-    <ClCompile Include="_Input\_\INQSpace.c" />
     <ClCompile Include="_Input\_\INQInquisitor.c" />
     <ClCompile Include="_Input\_\INQEntity.c" />
     <ClCompile Include="_Input\_\INQPartition.c" />
     <ClCompile Include="_Input\_\INQTerrain.c" />
-    <ClCompile Include="_Input\_\INQSurface.c" />
     <ClCompile Include="_Input\_\INQRectangle.c" />
-    <ClCompile Include="_Input\_\INQTile.c" />
+    <ClCompile Include="_Input\_\INQName.c" />
+    <ClCompile Include="_Input\_\INQAtlas.c" />
+    <ClCompile Include="_Input\_\INQWall.c" />
+    <ClCompile Include="_Input\_\INQSprite.c" />
+    <ClCompile Include="_Input\_\INQPlayer.c" />
+    <ClCompile Include="_Input\_\INQList.c" />
+    <ClCompile Include="_Input\_\INQPointer.c" />
+    <ClCompile Include="_Input\_\INQNode.c" />
+    <ClCompile Include="_Input\_\INQEntityStorage.c" />
+    <ClCompile Include="_Input\_\INQEntityData.c" />
   </ItemGroup>
 </Project>

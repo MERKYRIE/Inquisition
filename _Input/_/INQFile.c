@@ -6,9 +6,17 @@ void Inq_File_IConstruct(Inq_File_SInstance *const AInstance , char const*const 
     Inq_Debug_IAssertHandle(AInstance->FData);
 }
 
-Sint64 Inq_File_IRead(Inq_File_SInstance *const AInstance , void *const APointer , Sint64 ASize)
+bool Inq_File_IRead(Inq_File_SInstance *const AInstance , void *const APointer , Sint64 ASize)
 {
-    return(SDL_ReadIO(AInstance->FData , APointer , ASize));
+    Sint64 LSize = SDL_ReadIO(AInstance->FData , APointer , ASize);
+    SDL_IOStatus LStatus = SDL_GetIOStatus(AInstance->FData);
+    Inq_Debug_IAssertCondition((LStatus == SDL_IO_STATUS_READY || LStatus == SDL_IO_STATUS_EOF) && (ASize == LSize || (ASize > LSize && LSize == 0)));
+    return(LSize == ASize);
+}
+
+bool Inq_File_IReadCharacter(Inq_File_SInstance *const AInstance , char *const ACharacter)
+{
+    return(Inq_File_IRead(AInstance , ACharacter , sizeof(char)));
 }
 
 bool Inq_File_IReadString(Inq_File_SInstance *const AInstance , Inq_String_SInstance *const AString)
@@ -19,26 +27,26 @@ bool Inq_File_IReadString(Inq_File_SInstance *const AInstance , Inq_String_SInst
         return(false);
     }
     char LCharacter;
-    while(true)
+    while(Inq_File_IReadCharacter(AInstance , &LCharacter) && LCharacter != '\n' && LCharacter != ' ')
     {
-        if(!Inq_File_IRead(AInstance , &LCharacter , sizeof(char)))
+        if(LCharacter == '\r')
         {
-            if(SDL_GetIOStatus(AInstance->FData) != SDL_IO_STATUS_EOF)
-            {
-                Inq_Debug_IAssertCondition(true);
-            }
+            continue;
         }
-        if(LCharacter != '\n' && SDL_GetIOStatus(AInstance->FData) == SDL_IO_STATUS_READY)
-        {
-            Inq_String_IPush(AString);
-            *Inq_String_IGetLast(AString) = LCharacter;
-        }
-        else
-        {
-            break;
-        }
+        Inq_String_IPush(AString);
+        *Inq_String_IGetLast(AString) = LCharacter;
     }
     return(true);
+}
+
+bool Inq_File_IReadIntegral(Inq_File_SInstance *const AInstance , Sint64 *const AIntegral)
+{
+    Inq_String_SInstance LString;
+    Inq_String_IConstructVoid(&LString);
+    bool LFlag = Inq_File_IReadString(AInstance , &LString);
+    *AIntegral = Inq_String_IParseIntegral(&LString);
+    Inq_String_IDeconstruct(&LString);
+    return(LFlag);
 }
 
 void Inq_File_IDeconstruct(Inq_File_SInstance *const AInstance)

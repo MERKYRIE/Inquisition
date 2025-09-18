@@ -28,4 +28,5 @@ void Inq_String_IReplace(Inq_String_SInstance const*const AInstance , char const
 void Inq_String_IGeneralize(Inq_String_SInstance const*const AInstance);
 Sint32 Inq_String_ICompare(Inq_String_SInstance const*const AA , Inq_String_SInstance const*const AB);
 char * Inq_String_IFind(Inq_String_SInstance const*const AInstance , char const LCharacter);
+Sint64 Inq_String_IParseIntegral(Inq_String_SInstance const*const AInstance);
 void Inq_String_IDeconstruct(Inq_String_SInstance *const AInstance);

@@ -28,7 +28,7 @@
  * should look like this:
  *
  * ```c
- * #include <../SimpleDirectMediaLayer/SDL.h>
+ * #include <SDL3/SDL.h>
  * #include <../SimpleDirectMediaLayer/SDL_main.h>
  *
  * int main(int argc, char *argv[])

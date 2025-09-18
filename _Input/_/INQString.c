@@ -9,7 +9,7 @@ void Inq_String_IConstruct(Inq_String_SInstance *const AInstance , char const*co
 void Inq_String_IConstructSpace(Inq_String_SInstance *const AInstance , Sint64 const ACount)
 {
     Inq_Array_IConstructSpace(AInstance , sizeof(char) , 0);
-    Inq_Debug_IAssert(true , "Test null termination!");
+    Inq_Debug_IAssert(false , "Inq_String_IConstructSpace");
 }
 
 void Inq_String_IConstructVoid(Inq_String_SInstance *const AInstance)
@@ -21,13 +21,13 @@ void Inq_String_IConstructVoid(Inq_String_SInstance *const AInstance)
 void Inq_String_IConstructCopy(Inq_String_SInstance *const ADestination , Inq_String_SInstance const*const ASource)
 {
     Inq_Array_IConstructCopy(ADestination , ASource);
-    Inq_Debug_IAssert(true , "Test null termination!");
+    Inq_Debug_IAssert(false , "Inq_String_IConstructCopy");
 }
 
 void Inq_String_IAdjust(Inq_String_SInstance *const AInstance , Sint64 const ACount)
 {
     Inq_Array_IAdjust(AInstance , ACount);
-    Inq_Debug_IAssert(true , "Test null termination!");
+    Inq_Debug_IAssert(false , "Inq_String_IAdjust");
 }
 
 void Inq_String_IPush(Inq_String_SInstance *const AInstance)
@@ -90,6 +90,11 @@ char * Inq_String_IFind(Inq_String_SInstance const*const AInstance , char const 
         }
     }
     return(NULL);
+}
+
+Sint64 Inq_String_IParseIntegral(Inq_String_SInstance const*const AInstance)
+{
+    return(SDL_strtoll(AInstance->FData , NULL , 10));
 }
 
 void Inq_String_IDeconstruct(Inq_String_SInstance *const AInstance)

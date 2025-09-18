@@ -1,4 +1,5 @@
 #pragma comment(lib , "../SimpleDirectMediaLayer/SDL3")
+#pragma comment(lib , "../SimpleDirectMediaLayer/Image/SDL3_image")
 #pragma comment(lib , "../SimpleDirectMediaLayer/TrueTypeFont/SDL3_ttf")
 
 #include"../SimpleDirectMediaLayer/SDL_main.h"
@@ -9,8 +10,13 @@ void Inq_Core_IInitialize(void)
 {
     Inq_Debug_IAssertCondition(SDL_Init(SDL_INIT_VIDEO));
     Inq_Video_IInitialize();
+    Inq_Atlas_IInitialize();
     Inq_Typeface_IInitialize();
-    Inq_Space_IInitialize();
+    Inq_Entity_IInitialize();
+    Inq_Player_IInitialize();
+    Inq_Inquisitor_IInitialize();
+    Inq_Wall_IInitialize();
+    Inq_Partition_IInitialize();
 }
 
 void Inq_Core_IInitiate(void)
@@ -25,15 +31,20 @@ void Inq_Core_IInitiate(void)
     */
     while(true)
     {
-        Inq_Space_IUpdate();
+        Inq_Entity_IUpdate();
         Inq_Video_IUpdate();
     }
 }
 
 void Inq_Core_IDeinitialize(void)
 {
-    Inq_Space_IDeinitialize();
+    Inq_Partition_IDeinitialize();
+    Inq_Wall_IDeinitialize();
+    Inq_Inquisitor_IDeinitialize();
+    Inq_Player_IDeinitialize();
+    Inq_Entity_IDeinitialize();
     Inq_Typeface_IDeinitialize();
+    Inq_Atlas_IDeinitialize();
     Inq_Video_IDeinitialize();
     SDL_Quit();
 }

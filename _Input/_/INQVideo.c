@@ -1,63 +1,64 @@
 #include"INQCore.h"
 
-SDL_Window * GWindow;
-SDL_Renderer * GRenderer;
-Sint64 GWidth;
-Sint64 GHeight;
-Sint64 GMinimalDimension;
-Sint64 GMaximalDimension;
-double GRatio;
-double GInversedRatio;
-Sint64 GProportionalWidth;
-Sint64 GProportionalHeight;
+SDL_Window * Inq_Video_GWindow;
+SDL_Renderer * Inq_Video_GRenderer;
+Sint64 Inq_Video_GWidth;
+Sint64 Inq_Video_GHeight;
+Sint64 Inq_Video_GMinimalDimension;
+Sint64 Inq_Video_GMaximalDimension;
+double Inq_Video_GRatio;
+double Inq_Video_GInversedRatio;
+Sint64 Inq_Video_GProportionalWidth;
+Sint64 Inq_Video_GProportionalHeight;
 
 void Inq_Video_IInitialize(void)
 {
-    Inq_Debug_IAssertHandle(GWindow = SDL_CreateWindow("Inquisition" , 0 , 0 , SDL_WINDOW_FULLSCREEN));
-    Inq_Debug_IAssertHandle(GRenderer = SDL_CreateRenderer(GWindow , NULL));
-    SDL_DisplayMode const* LMode;
-    Inq_Debug_IAssertHandle(LMode = SDL_GetCurrentDisplayMode(1));
-    GWidth = LMode->w;
-    GHeight = LMode->h;
-    GMinimalDimension = Inq_Integral_IGetMinimum(GWidth , GHeight);
-    GMaximalDimension = Inq_Integral_IGetMaximum(GWidth , GHeight);
-    GRatio = (double)GWidth / (double)GHeight;
-    GInversedRatio = (double)GHeight / (double)GWidth;
-    GProportionalWidth = 0;
-    for(GProportionalHeight = 3 ; GProportionalHeight <= 9 ; GProportionalHeight++)
+    Inq_Debug_IAssertHandle(Inq_Video_GWindow = SDL_CreateWindow("Inquisition" , 0 , 0 , SDL_WINDOW_FULLSCREEN));
+    Inq_Debug_IAssertHandle(Inq_Video_GRenderer = SDL_CreateRenderer(Inq_Video_GWindow , NULL));
+    Sint32 LWidth;
+    Sint32 LHeight;
+    Inq_Debug_IAssertCondition(SDL_GetRenderOutputSize(Inq_Video_GRenderer , &LWidth , &LHeight));
+    Inq_Video_GWidth = LWidth;
+    Inq_Video_GHeight = LHeight;
+    Inq_Video_GMinimalDimension = Inq_Integral_IGetMinimum(Inq_Video_GWidth , Inq_Video_GHeight);
+    Inq_Video_GMaximalDimension = Inq_Integral_IGetMaximum(Inq_Video_GWidth , Inq_Video_GHeight);
+    Inq_Video_GRatio = (double)Inq_Video_GWidth / (double)Inq_Video_GHeight;
+    Inq_Video_GInversedRatio = (double)Inq_Video_GHeight / (double)Inq_Video_GWidth;
+    Inq_Video_GProportionalWidth = 0;
+    for(Inq_Video_GProportionalHeight = 3 ; Inq_Video_GProportionalHeight <= 9 ; Inq_Video_GProportionalHeight++)
     {
-        if(SDL_fabs(GProportionalHeight * GRatio - SDL_round(GProportionalHeight * GRatio)) < SDL_FLT_EPSILON)
+        if(SDL_fabs(Inq_Video_GProportionalHeight * Inq_Video_GRatio - SDL_round(Inq_Video_GProportionalHeight * Inq_Video_GRatio)) < SDL_FLT_EPSILON)
         {
-            GProportionalWidth = (Sint64)SDL_round(GProportionalHeight * GRatio);
+            Inq_Video_GProportionalWidth = (Sint64)SDL_round(Inq_Video_GProportionalHeight * Inq_Video_GRatio);
             break;
         }
     }
-    Inq_Debug_IAssert(GProportionalWidth , "GProportionalWidth");
+    Inq_Debug_IAssert(Inq_Video_GProportionalWidth != 0 , "Inq_Video_IInitialize");
 }
 
 void Inq_Video_IUpdate(void)
 {
-    SDL_RenderPresent(GRenderer);
-    SDL_RenderClear(GRenderer);
+    SDL_RenderPresent(Inq_Video_GRenderer);
+    SDL_RenderClear(Inq_Video_GRenderer);
 }
 
 SDL_Renderer * Inq_Video_IGetRenderer(void)
 {
-    return(GRenderer);
+    return(Inq_Video_GRenderer);
 }
 
 double Inq_Video_IGetSquareCoordinate(double const APixelCoordinate)
 {
-    return(APixelCoordinate / GMinimalDimension);
+    return(APixelCoordinate / Inq_Video_GMinimalDimension);
 }
 
 double Inq_Video_IGetPixelCoordinate(double const ASquareCoordinate)
 {
-    return(GMinimalDimension * ASquareCoordinate);
+    return(Inq_Video_GMinimalDimension * ASquareCoordinate);
 }
 
 void Inq_Video_IDeinitialize(void)
 {
-    SDL_DestroyRenderer(GRenderer);
-    SDL_DestroyWindow(GWindow);
+    SDL_DestroyRenderer(Inq_Video_GRenderer);
+    SDL_DestroyWindow(Inq_Video_GWindow);
 }

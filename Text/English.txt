@@ -1,3 +1,4 @@
 Terrain
 Entity
 Inquisitor
+Wall
