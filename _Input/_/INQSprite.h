@@ -3,6 +3,8 @@
 struct Inq_Sprite_SInstance
 {
     Inq_Image_SInstance const* FImage;
+    double FXOffset;
+    double FYOffset;
 };
 
 void Inq_Sprite_IConstruct(Inq_Sprite_SInstance *const AInstance , char const*const APath);

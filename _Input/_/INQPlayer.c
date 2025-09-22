@@ -18,7 +18,7 @@ void Inq_Player_IInitialize(void)
 
 void Inq_Player_IConstruct(Inq_EntityData_UInstance *const AData , Sint64 const AX , Sint64 const AY)
 {
-    Inq_Sprite_IConstruct(&AData->FPlayer.FSprite , "i_chartselection_clear.png");
+    Inq_Sprite_IConstruct(&AData->FPlayer.FSprite , "Player.png");
 }
 
 void Inq_Player_IUpdate(Inq_EntityData_UInstance const*const AData , Sint64 const AX , Sint64 const AY)

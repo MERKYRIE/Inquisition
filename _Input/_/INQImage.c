@@ -5,6 +5,11 @@ void Inq_Image_IConstruct(Inq_Image_SInstance *const AInstance , Inq_String_SIns
     Inq_String_IConstruct(&AInstance->FPath , Inq_String_IFind(APath , '/'));
     Inq_Debug_IAssertHandle(AInstance->FData = IMG_LoadTexture(Inq_Video_IGetRenderer() , APath->FData));
     Inq_Debug_IAssertCondition(SDL_SetTextureScaleMode(AInstance->FData , SDL_SCALEMODE_NEAREST));
+    float LWidth;
+    float LHeight;
+    Inq_Debug_IAssertCondition(SDL_GetTextureSize(AInstance->FData , &LWidth , &LHeight));
+    AInstance->FWidth = Inq_Video_IGetSquareCoordinate(LWidth);
+    AInstance->FHeight = Inq_Video_IGetSquareCoordinate(LHeight);
 }
 
 Sint32 Inq_Image_ICompare(Inq_String_SInstance const*const APath , Inq_Image_SInstance const*const AImage)
@@ -17,19 +22,14 @@ Sint32 Inq_Image_ICompareImage(Inq_Image_SInstance const*const AA , Inq_Image_SI
     return(Inq_Image_ICompare(&AA->FPath , AB));
 }
 
-void Inq_Image_IGetSize(Inq_Image_SInstance const*const AInstance , double *const AWidth , double *const AHeight)
+double Inq_Image_IGetWidth(Inq_Image_SInstance const*const AInstance)
 {
-    float LWidth;
-    float LHeight;
-    SDL_GetTextureSize(AInstance->FData , &LWidth , &LHeight);
-    if(AWidth)
-    {
-        *AWidth = LWidth;
-    }
-    if(AHeight)
-    {
-        *AHeight = LHeight;
-    }
+    return(AInstance->FWidth);
+}
+
+double Inq_Image_IGetHeight(Inq_Image_SInstance const*const AInstance)
+{
+    return(AInstance->FHeight);
 }
 
 void Inq_Image_IDraw(Inq_Image_SInstance const*const AInstance , Inq_Rectangle_SInstance const*const AViewport)

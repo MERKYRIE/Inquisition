@@ -4,7 +4,7 @@ void Inq_Font_IConstruct(Inq_Font_SInstance *const AInstance , Inq_String_SInsta
 {
     Inq_String_IConstruct(&AInstance->FPath , Inq_String_IFind(APath , '/'));
     Inq_Array_IConstructVoid(&AInstance->FTextArray , sizeof(Inq_Text_SInstance));
-    Inq_Debug_IAssertHandle(AInstance->FData = TTF_OpenFont(APath->FData , 16));
+    Inq_Debug_IAssertHandle(AInstance->FData = TTF_OpenFont(APath->FData , 32));
     Inq_File_SInstance LEnglishFile;
     Inq_File_IConstruct(&LEnglishFile , "Text/English.txt");
     Inq_File_SInstance LRussianFile;

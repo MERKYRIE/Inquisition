@@ -2,3 +2,11 @@ Terrain
 Entity
 Inquisitor
 Wall
+?Husk
+*Servo-Husk
+*Combat Husk
+?Servo-Excavator
+Assault Cyborg
+?Sub-Husk
+*Boosted Sub-Husk
+*Shock Husk

@@ -18,7 +18,7 @@ void Inq_Inquisitor_IInitialize(void)
 
 void Inq_Inquisitor_IConstruct(Inq_EntityData_UInstance *const AData , Sint64 const AX , Sint64 const AY)
 {
-    Inq_Sprite_IConstruct(&AData->FInquisitor.FSprite , "i_chartselection_clear.png");
+    Inq_Sprite_IConstruct(&AData->FInquisitor.FSprite , "Inquisitor.png");
 }
 
 void Inq_Inquisitor_IUpdate(Inq_EntityData_UInstance const*const AData , Sint64 const AX , Sint64 const AY)
