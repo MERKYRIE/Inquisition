@@ -16,6 +16,7 @@ void Inq_Core_IInitialize(void)
     Inq_Player_IInitialize();
     Inq_Inquisitor_IInitialize();
     Inq_Wall_IInitialize();
+    Inq_Enemy_IInitialize();
     Inq_Partition_IInitialize();
 }
 
@@ -39,6 +40,7 @@ void Inq_Core_IInitiate(void)
 void Inq_Core_IDeinitialize(void)
 {
     Inq_Partition_IDeinitialize();
+    Inq_Enemy_IDeinitialize();
     Inq_Wall_IDeinitialize();
     Inq_Inquisitor_IDeinitialize();
     Inq_Player_IDeinitialize();

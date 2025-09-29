@@ -19,7 +19,7 @@ bool Inq_File_IReadCharacter(Inq_File_SInstance *const AInstance , char *const A
     return(Inq_File_IRead(AInstance , ACharacter , sizeof(char)));
 }
 
-bool Inq_File_IReadString(Inq_File_SInstance *const AInstance , Inq_String_SInstance *const AString)
+bool Inq_File_IReadString(Inq_File_SInstance *const AInstance , Inq_String_SInstance *const AString , bool AIsSpaceDelimiting)
 {
     Inq_String_IClear(AString);
     if(SDL_GetIOStatus(AInstance->FData) == SDL_IO_STATUS_EOF)
@@ -27,7 +27,7 @@ bool Inq_File_IReadString(Inq_File_SInstance *const AInstance , Inq_String_SInst
         return(false);
     }
     char LCharacter;
-    while(Inq_File_IReadCharacter(AInstance , &LCharacter) && LCharacter != '\n' && LCharacter != ' ')
+    while(Inq_File_IReadCharacter(AInstance , &LCharacter) && LCharacter != '\n' && (!AIsSpaceDelimiting || LCharacter != ' '))
     {
         if(LCharacter == '\r')
         {
@@ -43,7 +43,7 @@ bool Inq_File_IReadIntegral(Inq_File_SInstance *const AInstance , Sint64 *const 
 {
     Inq_String_SInstance LString;
     Inq_String_IConstructVoid(&LString);
-    bool LFlag = Inq_File_IReadString(AInstance , &LString);
+    bool LFlag = Inq_File_IReadString(AInstance , &LString , true);
     *AIntegral = Inq_String_IParseIntegral(&LString);
     Inq_String_IDeconstruct(&LString);
     return(LFlag);

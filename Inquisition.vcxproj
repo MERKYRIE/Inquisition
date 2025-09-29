@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="_Input\_\INQArray.h" />
     <ClInclude Include="_Input\_\INQAtlas.h" />
+    <ClInclude Include="_Input\_\INQEnemy.h" />
     <ClInclude Include="_Input\_\INQEntity.h" />
     <ClInclude Include="_Input\_\INQEntityData.h" />
     <ClInclude Include="_Input\_\INQFile.h" />
@@ -51,6 +52,7 @@
   <ItemGroup>
     <ClCompile Include="_Input\_\INQArray.c" />
     <ClCompile Include="_Input\_\INQAtlas.c" />
+    <ClCompile Include="_Input\_\INQEnemy.c" />
     <ClCompile Include="_Input\_\INQEntity.c" />
     <ClCompile Include="_Input\_\INQEntityData.c" />
     <ClCompile Include="_Input\_\INQFile.c" />

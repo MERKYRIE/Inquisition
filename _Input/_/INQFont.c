@@ -13,7 +13,7 @@ void Inq_Font_IConstruct(Inq_Font_SInstance *const AInstance , Inq_String_SInsta
     Inq_String_IConstructVoid(&LEnglishString);
     Inq_String_SInstance LRussianString;
     Inq_String_IConstructVoid(&LRussianString);
-    while(Inq_File_IReadString(&LEnglishFile , &LEnglishString) && Inq_File_IReadString(&LRussianFile , &LRussianString))
+    while(Inq_File_IReadString(&LEnglishFile , &LEnglishString , false) && Inq_File_IReadString(&LRussianFile , &LRussianString , false))
     {
         Inq_Array_IPush(&AInstance->FTextArray);
         Inq_Text_IConstruct(Inq_Array_IGetLast(&AInstance->FTextArray) , AInstance->FData , &LEnglishString , &LRussianString);

@@ -14,6 +14,8 @@ typedef struct Inq_Entity_SInstance Inq_Entity_SInstance;
 typedef struct Inq_Entity_SList Inq_Entity_SList;
 typedef struct Inq_Entity_SNode Inq_Entity_SNode;
 
+typedef struct Inq_Enemy_SInstance Inq_Enemy_SInstance;
+
 typedef union Inq_EntityData_UInstance Inq_EntityData_UInstance;
 
 typedef struct Inq_EntityStorage_SInstance Inq_EntityStorage_SInstance;
@@ -74,6 +76,7 @@ struct Inq_Mouse_SWheel;
 #include"INQPointer.h"
 #include"INQList.h"
 #include"INQSprite.h"
+#include"INQEnemy.h"
 #include"INQPlayer.h"
 #include"INQRectangle.h"
 #include"INQName.h"

@@ -29,6 +29,7 @@
     <ClInclude Include="_Input\_\INQNode.h" />
     <ClInclude Include="_Input\_\INQEntityStorage.h" />
     <ClInclude Include="_Input\_\INQEntityData.h" />
+    <ClInclude Include="_Input\_\INQEnemy.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="_Input\_\INQCore.c" />
@@ -59,5 +60,6 @@
     <ClCompile Include="_Input\_\INQNode.c" />
     <ClCompile Include="_Input\_\INQEntityStorage.c" />
     <ClCompile Include="_Input\_\INQEntityData.c" />
+    <ClCompile Include="_Input\_\INQEnemy.c" />
   </ItemGroup>
 </Project>
