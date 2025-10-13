@@ -10,6 +10,9 @@ void Inq_Glob_IConstruct(Inq_String_SArray *const AInstance , char const*const A
     {
         Inq_String_IConstruct(&AInstance->FData[LIndex] , APath);
         Inq_String_SInstance LBuffer;
+        Inq_String_IConstruct(&LBuffer , "/");
+        Inq_String_IAppend(&AInstance->FData[LIndex] , &LBuffer);
+        Inq_String_IDeconstruct(&LBuffer);
         Inq_String_IConstruct(&LBuffer , LArray[LIndex]);
         Inq_String_IAppend(&AInstance->FData[LIndex] , &LBuffer);
         Inq_String_IDeconstruct(&LBuffer);

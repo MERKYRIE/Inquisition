@@ -12,11 +12,12 @@ void Inq_Core_IInitialize(void)
     Inq_Video_IInitialize();
     Inq_Atlas_IInitialize();
     Inq_Typeface_IInitialize();
+    Inq_Keyboard_IInitialize();
     Inq_Entity_IInitialize();
     Inq_Player_IInitialize();
-    Inq_Inquisitor_IInitialize();
     Inq_Wall_IInitialize();
-    Inq_Enemy_IInitialize();
+    Inq_SubHusk_IInitialize();
+    Inq_Husk_IInitialize();
     Inq_Partition_IInitialize();
 }
 
@@ -25,13 +26,13 @@ void Inq_Core_IInitiate(void)
     /*
     while(NClient::GKeyboard.FKeys["Escape"]->FState == "Up")
     {
-        NClient::GKeyboard.IUpdate();
         NClient::GMouse.IUpdate();
-        NClient::GTime.IUpdate();
     }
     */
-    while(true)
+    while(!Inq_Keyboard_IGetKey(SDL_SCANCODE_ESCAPE)->FIsPressed)
     {
+        Inq_Time_IUpdate();
+        Inq_Keyboard_IUpdate();
         Inq_Entity_IUpdate();
         Inq_Video_IUpdate();
     }
@@ -40,11 +41,12 @@ void Inq_Core_IInitiate(void)
 void Inq_Core_IDeinitialize(void)
 {
     Inq_Partition_IDeinitialize();
-    Inq_Enemy_IDeinitialize();
+    Inq_Husk_IDeinitialize();
+    Inq_SubHusk_IDeinitialize();
     Inq_Wall_IDeinitialize();
-    Inq_Inquisitor_IDeinitialize();
     Inq_Player_IDeinitialize();
     Inq_Entity_IDeinitialize();
+    Inq_Keyboard_IDeinitialize();
     Inq_Typeface_IDeinitialize();
     Inq_Atlas_IDeinitialize();
     Inq_Video_IDeinitialize();

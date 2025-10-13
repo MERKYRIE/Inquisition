@@ -2,7 +2,7 @@
 
 void Inq_Image_IConstruct(Inq_Image_SInstance *const AInstance , Inq_String_SInstance const*const APath)
 {
-    Inq_String_IConstruct(&AInstance->FPath , Inq_String_IFind(APath , '/'));
+    Inq_String_IConstruct(&AInstance->FPath , Inq_String_IFind(APath , '/' , 1));
     Inq_Debug_IAssertHandle(AInstance->FData = IMG_LoadTexture(Inq_Video_IGetRenderer() , APath->FData));
     Inq_Debug_IAssertCondition(SDL_SetTextureScaleMode(AInstance->FData , SDL_SCALEMODE_NEAREST));
     float LWidth;

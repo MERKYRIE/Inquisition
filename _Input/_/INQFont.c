@@ -2,7 +2,7 @@
 
 void Inq_Font_IConstruct(Inq_Font_SInstance *const AInstance , Inq_String_SInstance const*const APath)
 {
-    Inq_String_IConstruct(&AInstance->FPath , Inq_String_IFind(APath , '/'));
+    Inq_String_IConstruct(&AInstance->FPath , Inq_String_IFind(APath , '/' , 1));
     Inq_Array_IConstructVoid(&AInstance->FTextArray , sizeof(Inq_Text_SInstance));
     Inq_Debug_IAssertHandle(AInstance->FData = TTF_OpenFont(APath->FData , 32));
     Inq_File_SInstance LEnglishFile;

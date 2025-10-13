@@ -19,18 +19,23 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="_Input\_\INQAnimation.h" />
+    <ClInclude Include="_Input\_\INQAnimator.h" />
     <ClInclude Include="_Input\_\INQArray.h" />
     <ClInclude Include="_Input\_\INQAtlas.h" />
-    <ClInclude Include="_Input\_\INQEnemy.h" />
+    <ClInclude Include="_Input\_\INQHusk.h" />
     <ClInclude Include="_Input\_\INQEntity.h" />
     <ClInclude Include="_Input\_\INQEntityData.h" />
     <ClInclude Include="_Input\_\INQFile.h" />
+    <ClInclude Include="_Input\_\INQFrame.h" />
     <ClInclude Include="_Input\_\INQGlob.h" />
     <ClInclude Include="_Input\_\INQCore.h" />
     <ClInclude Include="_Input\_\INQDebug.h" />
     <ClInclude Include="_Input\_\INQFont.h" />
     <ClInclude Include="_Input\_\INQImage.h" />
-    <ClInclude Include="_Input\_\INQInquisitor.h" />
+    <ClInclude Include="_Input\_\INQSubHusk.h" />
+    <ClInclude Include="_Input\_\INQKey.h" />
+    <ClInclude Include="_Input\_\INQKeyboard.h" />
     <ClInclude Include="_Input\_\INQList.h" />
     <ClInclude Include="_Input\_\INQName.h" />
     <ClInclude Include="_Input\_\INQNode.h" />
@@ -45,23 +50,29 @@
     <ClInclude Include="_Input\_\INQReal.h" />
     <ClInclude Include="_Input\_\INQString.h" />
     <ClInclude Include="_Input\_\INQEntityStorage.h" />
+    <ClInclude Include="_Input\_\INQTime.h" />
     <ClInclude Include="_Input\_\INQTypeface.h" />
     <ClInclude Include="_Input\_\INQVideo.h" />
     <ClInclude Include="_Input\_\INQWall.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="_Input\_\INQAnimation.c" />
+    <ClCompile Include="_Input\_\INQAnimator.c" />
     <ClCompile Include="_Input\_\INQArray.c" />
     <ClCompile Include="_Input\_\INQAtlas.c" />
-    <ClCompile Include="_Input\_\INQEnemy.c" />
+    <ClCompile Include="_Input\_\INQHusk.c" />
     <ClCompile Include="_Input\_\INQEntity.c" />
     <ClCompile Include="_Input\_\INQEntityData.c" />
     <ClCompile Include="_Input\_\INQFile.c" />
+    <ClCompile Include="_Input\_\INQFrame.c" />
     <ClCompile Include="_Input\_\INQGlob.c" />
     <ClCompile Include="_Input\_\INQCore.c" />
     <ClCompile Include="_Input\_\INQDebug.c" />
     <ClCompile Include="_Input\_\INQFont.c" />
     <ClCompile Include="_Input\_\INQImage.c" />
-    <ClCompile Include="_Input\_\INQInquisitor.c" />
+    <ClCompile Include="_Input\_\INQSubHusk.c" />
+    <ClCompile Include="_Input\_\INQKey.c" />
+    <ClCompile Include="_Input\_\INQKeyboard.c" />
     <ClCompile Include="_Input\_\INQList.c" />
     <ClCompile Include="_Input\_\INQName.c" />
     <ClCompile Include="_Input\_\INQNode.c" />
@@ -76,6 +87,7 @@
     <ClCompile Include="_Input\_\INQReal.c" />
     <ClCompile Include="_Input\_\INQString.c" />
     <ClCompile Include="_Input\_\INQEntityStorage.c" />
+    <ClCompile Include="_Input\_\INQTime.c" />
     <ClCompile Include="_Input\_\INQTypeface.c" />
     <ClCompile Include="_Input\_\INQVideo.c" />
     <ClCompile Include="_Input\_\INQWall.c" />

@@ -3,7 +3,7 @@
 union Inq_EntityData_UInstance
 {
     Inq_Player_SInstance FPlayer;
-    Inq_Inquisitor_SInstance FInquisitor;
     Inq_Wall_SInstance FWall;
-    Inq_Enemy_SInstance FEnemy;
+    Inq_SubHusk_SInstance FSubHusk;
+    Inq_Husk_SInstance FHusk;
 };

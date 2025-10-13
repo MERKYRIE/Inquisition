@@ -5,7 +5,6 @@ Sint64 Inq_Partition_GArrayWidth;
 Sint64 Inq_Partition_GArrayHeight;
 double Inq_Partition_GWidth;
 double Inq_Partition_GHeight;
-bool Inq_Partition_GTurn;
 
 void Inq_Partition_IInitialize(void)
 {
@@ -25,10 +24,10 @@ void Inq_Partition_IInitialize(void)
             {
                 Inq_Debug_IAssert(false , "Inq_Partition_IInitialize");
             }
-            Inq_Terrain_IConstruct(&Inq_Partition_GArray.FData[LY * Inq_Partition_GArrayWidth + LX].FTerrain , LX , LY);
+            Inq_Terrain_IConstruct(&Inq_Partition_IGetPartition(LX , LY)->FTerrain , LX , LY);
             if(LIdentifier != 0)
             {
-                Inq_Entity_IConstruct(&Inq_Partition_GArray.FData[LY * Inq_Partition_GArrayWidth + LX].FEntity , LIdentifier , LX , LY);
+                Inq_Entity_IConstruct(&Inq_Partition_IGetPartition(LX , LY)->FEntity , LIdentifier , LX , LY);
             }
         }
     }
@@ -37,7 +36,12 @@ void Inq_Partition_IInitialize(void)
 
 void Inq_Partition_IConstruct(Sint64 const AIdentifier , Sint64 const AX , Sint64 const AY)
 {
-    Inq_Entity_IConstruct(&Inq_Partition_GArray.FData[AY * Inq_Partition_GArrayWidth + AX].FEntity , AIdentifier , AX , AY);
+    Inq_Entity_IConstruct(&Inq_Partition_IGetPartition(AX , AY)->FEntity , AIdentifier , AX , AY);
+}
+
+Inq_Partition_SInstance * Inq_Partition_IGetPartition(Sint64 const AX , Sint64 const AY)
+{
+    return(&Inq_Partition_GArray.FData[AY * Inq_Partition_GArrayWidth + AX]);
 }
 
 double Inq_Partition_IGetWidth(void)
@@ -50,15 +54,32 @@ double Inq_Partition_IGetHeight(void)
     return(Inq_Partition_GHeight);
 }
 
-void Inq_Partition_IGetPosition(Inq_Entity_SInstance const*const AEntity , Sint64 *const AX , Sint64 *const AY)
+void Inq_Partition_IGetPosition(Inq_EntityData_UInstance const*const AData , Sint64 *const AX , Sint64 *const AY)
 {
-    *AX = ((Sint64)AEntity - (Sint64)&((Inq_Partition_SInstance *)NULL)->FEntity - (Sint64)Inq_Partition_GArray.FData) / sizeof(Inq_Partition_SInstance) % Inq_Partition_GArrayWidth;
-    *AY = ((Sint64)AEntity - (Sint64)&((Inq_Partition_SInstance *)NULL)->FEntity - (Sint64)Inq_Partition_GArray.FData) / sizeof(Inq_Partition_SInstance) / Inq_Partition_GArrayWidth;
+    Sint64 LIndex = ((Sint64)AData - (Sint64)&((Inq_Entity_SInstance *)NULL)->FData - (Sint64)&((Inq_Partition_SInstance *)NULL)->FEntity - (Sint64)Inq_Partition_GArray.FData) / sizeof(Inq_Partition_SInstance);
+    *AX = LIndex % Inq_Partition_GArrayWidth;
+    *AY = LIndex / Inq_Partition_GArrayWidth;
+}
+
+bool Inq_Partition_ICanMove(Inq_EntityData_UInstance const*const AData , Sint64 const AXOffset , Sint64 const AYOffset)
+{
+    Sint64 LX;
+    Sint64 LY;
+    Inq_Partition_IGetPosition(AData , &LX , &LY);
+    return(0 <= LX + AXOffset && LX + AXOffset < Inq_Partition_GArrayWidth && 0 <= LY + AYOffset && LY + AYOffset < Inq_Partition_GArrayHeight &&!Inq_Entity_IIsFilled(&Inq_Partition_IGetPartition(LX + AXOffset , LY + AYOffset)->FEntity));
+}
+
+void Inq_Partition_IMove(Inq_EntityData_UInstance const*const AData , Sint64 const AXOffset , Sint64 const AYOffset)
+{
+    Sint64 LX;
+    Sint64 LY;
+    Inq_Partition_IGetPosition(AData , &LX , &LY);
+    Inq_Entity_IMove(&Inq_Partition_IGetPartition(LX , LY)->FEntity , AXOffset , AYOffset);
 }
 
 void Inq_Partition_IDeconstruct(Sint64 const AX , Sint64 const AY)
 {
-    Inq_Entity_IDeconstruct(&Inq_Partition_GArray.FData[AX * Inq_Partition_GArrayWidth + AY].FEntity , AX , AY);
+    Inq_Entity_IDeconstruct(&Inq_Partition_IGetPartition(AX , AY)->FEntity , AX , AY);
 }
 
 void Inq_Partition_IDeinitialize(void)
@@ -67,11 +88,11 @@ void Inq_Partition_IDeinitialize(void)
     {
         for(Sint64 LX = 0 ; LX < Inq_Partition_GArrayWidth ; LX++)
         {
-            if(Inq_Partition_GArray.FData[LY * Inq_Partition_GArrayWidth + LX].FEntity.FIdentifier != 0)
+            if(Inq_Partition_IGetPartition(LX , LY)->FEntity.FIdentifier != 0)
             {
-                Inq_Entity_IDeconstruct(&Inq_Partition_GArray.FData[LY * Inq_Partition_GArrayWidth + LX].FEntity , LX , LY);
+                Inq_Entity_IDeconstruct(&Inq_Partition_IGetPartition(LX , LY)->FEntity , LX , LY);
             }
-            Inq_Terrain_IDeconstruct(&Inq_Partition_GArray.FData[LY * Inq_Partition_GArrayWidth + LX].FTerrain , LX , LY);
+            Inq_Terrain_IDeconstruct(&Inq_Partition_IGetPartition(LX , LY)->FTerrain , LX , LY);
         }
     }
     Inq_Array_IDeconstruct(&Inq_Partition_GArray);

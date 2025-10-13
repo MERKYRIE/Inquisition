@@ -5,9 +5,12 @@ Sint64 Inq_Wall_GIdentifier;
 void Inq_Wall_IInitialize(void)
 {
     Inq_Wall_GIdentifier = Inq_Entity_IRegister
-    (&(Inq_EntityStorage_SInstance)
+    (
+        &(Inq_EntityStorage_SInstance)
         {
             .FConstruct = &Inq_Wall_IConstruct
+            ,
+            .FUpdateVideo = &Inq_Wall_IUpdateVideo
             ,
             .FUpdate = &Inq_Wall_IUpdate
             ,
@@ -21,9 +24,14 @@ void Inq_Wall_IConstruct(Inq_EntityData_UInstance *const AData , Sint64 const AX
     Inq_Name_IConstruct(&AData->FWall.FName , "CyrillicGoth.ttf" , "Wall");
 }
 
-void Inq_Wall_IUpdate(Inq_EntityData_UInstance const*const AData , Sint64 const AX , Sint64 const AY)
+void Inq_Wall_IUpdateVideo(Inq_EntityData_UInstance const*const AData , Sint64 const AX , Sint64 const AY)
 {
     Inq_Name_IDraw(&AData->FWall.FName , AX , AY);
+}
+
+bool Inq_Wall_IUpdate(Inq_EntityData_UInstance *const AData , Sint64 const AX , Sint64 const AY)
+{
+    return(true);
 }
 
 void Inq_Wall_IDeconstruct(Inq_EntityData_UInstance *const AData , Sint64 const AX , Sint64 const AY)
