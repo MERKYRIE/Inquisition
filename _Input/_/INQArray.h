@@ -13,6 +13,7 @@ void Inq_Array_IConstructVoid(void *const AInstance , Sint64 const ASize);
 void Inq_Array_IConstructCopy(void *const ADestination , void const*const ASource);
 void Inq_Array_IAdjust(void *const AInstance , Sint64 const ACount);
 void Inq_Array_IPush(void *const AInstance);
+void Inq_Array_IPop(void *const AInstance);
 void Inq_Array_IClear(void *const AInstance);
 void Inq_Array_IAppend(void *const ADestination , void const*const ASource);
 void * Inq_Array_IGetLast(void const*const AInstance);

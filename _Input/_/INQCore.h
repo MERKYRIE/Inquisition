@@ -34,8 +34,12 @@ typedef struct Inq_Frame_SArray Inq_Frame_SArray;
 
 typedef struct Inq_Husk_SInstance Inq_Husk_SInstance;
 
+typedef struct Inq_HuskRack_SInstance Inq_HuskRack_SInstance;
+
 typedef struct Inq_Image_SInstance Inq_Image_SInstance;
 typedef struct Inq_Image_SArray Inq_Image_SArray;
+
+typedef struct Inq_Integral_SArray Inq_Integral_SArray;
 
 typedef struct Inq_Key_SInstance Inq_Key_SInstance;
 typedef struct Inq_Key_SArray Inq_Key_SArray;
@@ -45,6 +49,8 @@ typedef struct Inq_List_SInstance Inq_List_SInstance;
 typedef struct Inq_Name_SInstance Inq_Name_SInstance;
 
 typedef struct Inq_Node_SInstance Inq_Node_SInstance;
+
+typedef struct Inq_Ore_SInstance Inq_Ore_SInstance;
 
 typedef struct Inq_Partition_SInstance Inq_Partition_SInstance;
 typedef struct Inq_Partition_Array Inq_Partition_Array;
@@ -67,7 +73,12 @@ typedef struct Inq_Terrain_SInstance Inq_Terrain_SInstance;
 typedef struct Inq_Text_SInstance Inq_Text_SInstance;
 typedef struct Inq_Text_SArray Inq_Text_SArray;
 
+typedef struct Inq_Walking_SInstance Inq_Walking_SInstance;
+
 typedef struct Inq_Wall_SInstance Inq_Wall_SInstance;
+
+typedef struct Inq_Widget_SInstance Inq_Widget_SInstance;
+typedef struct Inq_Widget_SArray Inq_Widget_SArray;
 
 /*
 struct Inq_Mouse_SAbsolute;
@@ -87,19 +98,23 @@ struct Inq_Mouse_SWheel;
 #include"INQPointer.h"
 #include"INQList.h"
 #include"INQSprite.h"
+#include"INQHuskRack.h"
 #include"INQFrame.h"
-#include"INQHusk.h"
 #include"INQRectangle.h"
+#include"INQWidget.h"
 #include"INQName.h"
+#include"INQOre.h"
 #include"INQWall.h"
 #include"INQAtlas.h"
 #include"INQArray.h"
 #include"INQDebug.h"
-#include"INQSubHusk.h"
 #include"INQFile.h"
 #include"INQString.h"
 #include"INQAnimation.h"
 #include"INQAnimator.h"
+#include"INQWalking.h"
+#include"INQHusk.h"
+#include"INQSubHusk.h"
 #include"INQPlayer.h"
 #include"INQEntityData.h"
 #include"INQEntity.h"

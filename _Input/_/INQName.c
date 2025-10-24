@@ -1,8 +1,8 @@
 #include"INQCore.h"
 
-void Inq_Name_IConstruct(Inq_Name_SInstance *const AInstance , char const*const AFont , char const*const AString)
+void Inq_Name_IConstruct(Inq_Name_SInstance *const AInstance , char const*const AFont , Sint64 const AIdentifier)
 {
-    AInstance->FText = Inq_Font_ISearch(Inq_Typeface_ISearch(AFont) , AString);
+    AInstance->FText = Inq_Font_ISearch(Inq_Typeface_ISearch(AFont) , AIdentifier);
     AInstance->FXOffset = (Inq_Partition_IGetWidth() - Inq_Text_IGetWidth(AInstance->FText)) / 2.0;
     AInstance->FYOffset = (Inq_Partition_IGetHeight() - Inq_Text_IGetHeight(AInstance->FText)) / 2.0;
 }

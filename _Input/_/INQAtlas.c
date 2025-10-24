@@ -5,7 +5,7 @@ Inq_Image_SArray Inq_Atlas_GImageArray;
 void Inq_Atlas_IInitialize(void)
 {
     Inq_String_SArray LGlob;
-    Inq_Glob_IConstruct(&LGlob , "Image" , "*/*/*.png");
+    Inq_Glob_IConstruct(&LGlob , "Image" , "png");
     Inq_Array_IConstructSpace(&Inq_Atlas_GImageArray , sizeof(Inq_Image_SInstance) , LGlob.FCount);
     for(Sint64 LIndex = 0 ; LIndex < Inq_Atlas_GImageArray.FCount ; LIndex++)
     {

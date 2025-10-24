@@ -1,6 +1,7 @@
 #include"INQCore.h"
 
 Sint64 Inq_Husk_GIdentifier;
+Inq_Integral_SArray Inq_Husk_GPropertyArray;
 
 void Inq_Husk_IInitialize(void)
 {
@@ -10,36 +11,115 @@ void Inq_Husk_IInitialize(void)
         {
             .FConstruct = &Inq_Husk_IConstruct
             ,
+            .FGetTitle = &Inq_Husk_IGetTitle
+            ,
+            .FGetPropertyArray = &Inq_Husk_IGetPropertyArray
+            ,
+            .FGetDescription = &Inq_Husk_IGetDescription
+            ,
             .FUpdateVideo = &Inq_Husk_IUpdateVideo
             ,
+            .FGetPortrait = &Inq_Husk_IGetPortrait
+            ,
             .FUpdate = &Inq_Husk_IUpdate
+            ,
+            .FCanWork = &Inq_Husk_ICanWork
+            ,
+            .FWork = NULL
             ,
             .FDeconstruct = &Inq_Husk_IDeconstruct
         }
     );
+    Inq_Array_IConstructSpace(&Inq_Husk_GPropertyArray , sizeof(Sint64) , 0);
 }
 
-void Inq_Husk_IConstruct(Inq_EntityData_UInstance *const AData , Sint64 const AX , Sint64 const AY)
+void Inq_Husk_IConstruct(Inq_EntityData_UInstance *const AData , Sint64 const AVariation , Sint64 const AX , Sint64 const AY)
 {
-    Inq_Sprite_IConstruct(&AData->FHusk.FSprite , "Husk/IdleDown/000.png");
+    Inq_Walking_IConstruct(&AData->FHusk.FWalking , "Crew/Recruitable/Machine slave/Husk");
 }
 
-void Inq_Husk_IUpdateVideo(Inq_EntityData_UInstance const*const AData , Sint64 const AX , Sint64 const AY)
+Sint64 Inq_Husk_IGetIdentifier(void)
 {
-    Inq_Sprite_IDraw(&AData->FHusk.FSprite , AX , AY);
+    return(Inq_Husk_GIdentifier);
+}
+
+Sint64 Inq_Husk_IGetTitle(Inq_EntityData_UInstance *const AData , Sint64 const AX , Sint64 const AY)
+{
+    return(3);
+}
+
+Inq_Integral_SArray const* Inq_Husk_IGetPropertyArray(Inq_EntityData_UInstance *const AData , Sint64 const AX , Sint64 const AY)
+{
+    return(&Inq_Husk_GPropertyArray);
+}
+
+Sint64 Inq_Husk_IGetDescription(Inq_EntityData_UInstance *const AData , Sint64 const AX , Sint64 const AY)
+{
+    return(271);
+}
+
+void Inq_Husk_IUpdateVideo(Inq_EntityData_UInstance *const AData , Sint64 const AX , Sint64 const AY)
+{
+    Inq_Walking_IUpdateVideo(&AData->FHusk.FWalking , AX , AY);
+}
+
+Inq_Image_SInstance const* Inq_Husk_IGetPortrait(Inq_EntityData_UInstance *const AData , Sint64 const AX , Sint64 const AY)
+{
+    return(Inq_Atlas_ISearch("Portrait/Husk.png"));
 }
 
 bool Inq_Husk_IUpdate(Inq_EntityData_UInstance *const AData , Sint64 const AX , Sint64 const AY)
 {
-    return(true);
+    if(Inq_Walking_IIsActive(&AData->FHusk.FWalking))
+    {
+        return(Inq_Walking_IUpdate(&AData->FHusk.FWalking , AData) != NULL);
+    }
+    else
+    {
+        for(Sint64 LY = 0 ; LY < Inq_Partition_IGetArrayHeight() ; LY++)
+        {
+            for(Sint64 LX = 0 ; LX < Inq_Partition_IGetArrayWidth() ; LX++)
+            {
+                if(Inq_Partition_IGetPartition(LX , LY)->FEntity.FIdentifier == Inq_Ore_IGetIdentifier())
+                {
+                    if(LX - AX < -1)
+                    {
+                        Inq_Walking_IWalkLeft(&AData->FHusk.FWalking , AData);
+                    }
+                    else if(LX - AX > 1)
+                    {
+                        Inq_Walking_IWalkRight(&AData->FHusk.FWalking , AData);
+                    }
+                    else if(LY - AY < -1)
+                    {
+                        Inq_Walking_IWalkUp(&AData->FHusk.FWalking , AData);
+                    }
+                    else if(LY - AY > 1)
+                    {
+                        Inq_Walking_IWalkDown(&AData->FHusk.FWalking , AData);
+                    }
+                    else
+                    {
+                        return(true);
+                    }
+                }
+            }
+        }
+    }
+    return(false);
+}
+
+bool Inq_Husk_ICanWork(Inq_EntityData_UInstance *const AData , Sint64 const AX , Sint64 const AY)
+{
+    return(false);
 }
 
 void Inq_Husk_IDeconstruct(Inq_EntityData_UInstance *const AData , Sint64 const AX , Sint64 const AY)
 {
-    Inq_Sprite_IDeconstruct(&AData->FHusk.FSprite);
+    Inq_Walking_IDeconstruct(&AData->FHusk.FWalking);
 }
 
 void Inq_Husk_IDeinitialize(void)
 {
-
+    Inq_Array_IDeconstruct(&Inq_Husk_GPropertyArray);
 }

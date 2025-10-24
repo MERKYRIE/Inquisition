@@ -2,16 +2,17 @@
 
 void Inq_Animation_IConstruct(Inq_Animation_SInstance *const AInstance , Inq_String_SInstance const*const APath)
 {
-    Inq_String_IConstruct(&AInstance->FPath , Inq_String_IFind(APath , '/' , 2));
+    Inq_String_IConstruct(&AInstance->FPath , Inq_String_IFindLast(APath , '/' , 1));
     Inq_String_SArray LGlob;
-    Inq_Glob_IConstruct(&LGlob , APath->FData , "*.png");
+    Inq_Glob_IConstruct(&LGlob , APath->FData , "png");
     Inq_Array_IConstructSpace(&AInstance->FFrameArray , sizeof(Inq_Frame_SInstance) , LGlob.FCount);
     for(Sint64 LIndex = 0 ; LIndex < AInstance->FFrameArray.FCount ; LIndex++)
     {
-        Inq_Frame_IConstruct(&AInstance->FFrameArray.FData[LIndex] , &LGlob.FData[LIndex] , 0.5);
+        Inq_Frame_IConstruct(&AInstance->FFrameArray.FData[LIndex] , &LGlob.FData[LIndex] , 1.0 / 8.0);
     }
     Inq_Glob_IDeconstruct(&LGlob);
     Inq_Array_ISort(&AInstance->FFrameArray , &Inq_Frame_ICompareFrame);
+    Inq_Animation_ISetZeroFrame(AInstance);
     for(Sint64 LIndex = 0 ; LIndex < AInstance->FFrameArray.FCount ; LIndex++)
     {
         SDL_Log("%s\n" , AInstance->FFrameArray.FData[LIndex].FSprite.FImage->FPath.FData);
@@ -29,9 +30,22 @@ Sint32 Inq_Animation_ICompareAnimation(Inq_Animation_SInstance const*const AA , 
     return(Inq_Animation_ICompare(&AA->FPath , AB));
 }
 
-void Inq_Animation_IDraw(Inq_Animation_SInstance const*const AInstance , Sint64 const AX , Sint64 const AY)
+void Inq_Animation_ISetZeroFrame(Inq_Animation_SInstance *const AInstance)
 {
-    Inq_Frame_IDraw(&AInstance->FFrameArray.FData[0] , AX , AY);
+    AInstance->FFrame = &AInstance->FFrameArray.FData[0];
+}
+
+bool Inq_Animation_IDraw(Inq_Animation_SInstance *const AInstance , double const ATimer , Sint64 const AX , Sint64 const AY , double const AXOffset , double const AYOffset)
+{
+    if(Inq_Frame_IDraw(AInstance->FFrame , ATimer , AX , AY , AXOffset , AYOffset))
+    {
+        AInstance->FFrame = &AInstance->FFrameArray.FData[((AInstance->FFrame - AInstance->FFrameArray.FData) + 1) % AInstance->FFrameArray.FCount];
+        return(true);
+    }
+    else
+    {
+        return(false);
+    }
 }
 
 void Inq_Animation_IDeconstruct(Inq_Animation_SInstance *const AInstance)

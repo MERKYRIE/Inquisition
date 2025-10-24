@@ -18,6 +18,8 @@ void Inq_Core_IInitialize(void)
     Inq_Wall_IInitialize();
     Inq_SubHusk_IInitialize();
     Inq_Husk_IInitialize();
+    Inq_HuskRack_IInitialize();
+    Inq_Ore_IInitialize();
     Inq_Partition_IInitialize();
 }
 
@@ -33,6 +35,7 @@ void Inq_Core_IInitiate(void)
     {
         Inq_Time_IUpdate();
         Inq_Keyboard_IUpdate();
+        Inq_Partition_IUpdate();
         Inq_Entity_IUpdate();
         Inq_Video_IUpdate();
     }
@@ -41,6 +44,8 @@ void Inq_Core_IInitiate(void)
 void Inq_Core_IDeinitialize(void)
 {
     Inq_Partition_IDeinitialize();
+    Inq_Ore_IDeinitialize();
+    Inq_HuskRack_IDeinitialize();
     Inq_Husk_IDeinitialize();
     Inq_SubHusk_IDeinitialize();
     Inq_Wall_IDeinitialize();

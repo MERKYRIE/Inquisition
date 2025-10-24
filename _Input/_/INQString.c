@@ -103,6 +103,23 @@ char * Inq_String_IFind(Inq_String_SInstance const*const AInstance , char const 
     return(NULL);
 }
 
+char * Inq_String_IFindLast(Inq_String_SInstance const*const AInstance , char const ACharacter , Sint64 const ACount)
+{
+    Sint64 LCount = ACount;
+    for(Sint64 LIndex = AInstance->FCount - 1 ; LIndex >= 0 ; LIndex--)
+    {
+        if(AInstance->FData[LIndex] == ACharacter)
+        {
+            LCount--;
+            if(LCount == 0)
+            {
+                return(&AInstance->FData[LIndex + 1]);
+            }
+        }
+    }
+    return(NULL);
+}
+
 Sint64 Inq_String_IParseIntegral(Inq_String_SInstance const*const AInstance)
 {
     return(SDL_strtoll(AInstance->FData , NULL , 10));

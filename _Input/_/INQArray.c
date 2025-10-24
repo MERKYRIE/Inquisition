@@ -37,6 +37,12 @@ void Inq_Array_IPush(void *const AInstance)
     Inq_Array_IAdjust(LInstance , LInstance->FCount + 1);
 }
 
+void Inq_Array_IPop(void *const AInstance)
+{
+    Inq_Array_SInstance * LInstance = AInstance;
+    Inq_Array_IAdjust(LInstance , LInstance->FCount - 1);
+}
+
 void Inq_Array_IClear(void *const AInstance)
 {
     Inq_Array_SInstance * LInstance = AInstance;

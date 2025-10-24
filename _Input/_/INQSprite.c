@@ -31,7 +31,7 @@ Sint32 Inq_Sprite_ICompareSprite(Inq_Sprite_SInstance const*const AA , Inq_Sprit
     return(Inq_Image_ICompareImage(AA->FImage , AB->FImage));
 }
 
-void Inq_Sprite_IDraw(Inq_Sprite_SInstance const*const AInstance , Sint64 const AX , Sint64 const AY)
+void Inq_Sprite_IDraw(Inq_Sprite_SInstance const*const AInstance , Sint64 const AX , Sint64 const AY , double const AXOffset , double const AYOffset)
 {
     double LXOffset;
     double LYOffset;
@@ -41,9 +41,9 @@ void Inq_Sprite_IDraw(Inq_Sprite_SInstance const*const AInstance , Sint64 const 
     (
         &LViewport
         ,
-        LXOffset + AInstance->FXOffset
+        AXOffset + LXOffset + AInstance->FXOffset
         ,
-        LYOffset + AInstance->FYOffset
+        AYOffset + LYOffset + AInstance->FYOffset
         ,
         Inq_Image_IGetWidth(AInstance->FImage) * Inq_Real_IGetMinimum
         (

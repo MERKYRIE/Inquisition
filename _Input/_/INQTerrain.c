@@ -1,8 +1,8 @@
 #include"INQCore.h"
 
-void Inq_Terrain_IConstruct(Inq_Terrain_SInstance *const AInstance , Sint64 const AX , Sint64 const AY)
+void Inq_Terrain_IConstruct(Inq_Terrain_SInstance *const AInstance , Sint64 const AIdentifier , Sint64 const AX , Sint64 const AY)
 {
-    Inq_Name_IConstruct(&AInstance->FName , "CyrillicGoth.ttf" , "Terrain");
+    Inq_Name_IConstruct(&AInstance->FName , "CyrillicGoth.ttf" , AIdentifier);
 }
 
 void Inq_Terrain_IUpdate(Inq_Terrain_SInstance const*const AInstance , Sint64 const AX , Sint64 const AY)

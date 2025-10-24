@@ -36,6 +36,10 @@
     <ClInclude Include="_Input\_\INQAnimator.h" />
     <ClInclude Include="_Input\_\INQFrame.h" />
     <ClInclude Include="_Input\_\INQTime.h" />
+    <ClInclude Include="_Input\_\INQWalking.h" />
+    <ClInclude Include="_Input\_\INQHuskRack.h" />
+    <ClInclude Include="_Input\_\INQOre.h" />
+    <ClInclude Include="_Input\_\INQWidget.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="_Input\_\INQCore.c" />
@@ -73,5 +77,9 @@
     <ClCompile Include="_Input\_\INQAnimator.c" />
     <ClCompile Include="_Input\_\INQFrame.c" />
     <ClCompile Include="_Input\_\INQTime.c" />
+    <ClCompile Include="_Input\_\INQWalking.c" />
+    <ClCompile Include="_Input\_\INQHuskRack.c" />
+    <ClCompile Include="_Input\_\INQOre.c" />
+    <ClCompile Include="_Input\_\INQWidget.c" />
   </ItemGroup>
 </Project>

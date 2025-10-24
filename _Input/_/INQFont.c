@@ -4,7 +4,8 @@ void Inq_Font_IConstruct(Inq_Font_SInstance *const AInstance , Inq_String_SInsta
 {
     Inq_String_IConstruct(&AInstance->FPath , Inq_String_IFind(APath , '/' , 1));
     Inq_Array_IConstructVoid(&AInstance->FTextArray , sizeof(Inq_Text_SInstance));
-    Inq_Debug_IAssertHandle(AInstance->FData = TTF_OpenFont(APath->FData , 32));
+    Inq_Debug_IAssertHandle(AInstance->FData = TTF_OpenFont(APath->FData , 16));
+    TTF_SetFontWrapAlignment(AInstance->FData , TTF_HORIZONTAL_ALIGN_CENTER);
     Inq_File_SInstance LEnglishFile;
     Inq_File_IConstruct(&LEnglishFile , "Text/English.txt");
     Inq_File_SInstance LRussianFile;
@@ -20,7 +21,6 @@ void Inq_Font_IConstruct(Inq_Font_SInstance *const AInstance , Inq_String_SInsta
     }
     Inq_String_IDeconstruct(&LEnglishString);
     Inq_File_IDeconstruct(&LEnglishFile);
-    Inq_Array_ISort(&AInstance->FTextArray , &Inq_Text_ICompare);
     for(Sint64 LIndex = 0 ; LIndex < AInstance->FTextArray.FCount ; LIndex++)
     {
         SDL_Log("%s\n" , AInstance->FTextArray.FData[LIndex].FString.FData);
@@ -38,13 +38,9 @@ Sint32 Inq_Font_ICompareFont(Inq_Font_SInstance const*const AA , Inq_Font_SInsta
     return(Inq_Font_ICompare(&AA->FPath , AB));
 }
 
-Inq_Text_SInstance const* Inq_Font_ISearch(Inq_Font_SInstance const*const AInstance , char const*const APath)
+Inq_Text_SInstance const* Inq_Font_ISearch(Inq_Font_SInstance const*const AInstance , Sint64 const AIdentifier)
 {
-    Inq_String_SInstance LPath;
-    Inq_String_IConstruct(&LPath , APath);
-    Inq_Text_SInstance * LText = Inq_Array_ISearch(&AInstance->FTextArray , &LPath , &Inq_Text_ICompareText);
-    Inq_String_IDeconstruct(&LPath);
-    return(LText);
+    return(&AInstance->FTextArray.FData[AIdentifier]);
 }
 
 void Inq_Font_IDeconstruct(Inq_Font_SInstance *const AInstance)

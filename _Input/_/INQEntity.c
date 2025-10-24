@@ -15,9 +15,21 @@ void Inq_Entity_IInitialize(void)
         {
             .FConstruct = NULL
             ,
+            .FGetTitle = NULL
+            ,
+            .FGetPropertyArray = NULL
+            ,
+            .FGetDescription = NULL
+            ,
             .FUpdateVideo = NULL
             ,
+            .FGetPortrait = NULL
+            ,
             .FUpdate = NULL
+            ,
+            .FCanWork = NULL
+            ,
+            .FWork = NULL
             ,
             .FDeconstruct = NULL
         }
@@ -31,18 +43,43 @@ Sint64 Inq_Entity_IRegister(Inq_EntityStorage_SInstance const*const AStorage)
     return(Inq_Entity_GStorageArray.FCount - 1);
 }
 
-void Inq_Entity_IConstruct(Inq_Entity_SInstance *const AInstance , Sint64 const LIdentifier , Sint64 const AX , Sint64 const AY)
+void Inq_Entity_IConstruct(Inq_Entity_SInstance *const AInstance , Sint64 const LIdentifier , Sint64 const AVariation , Sint64 const AX , Sint64 const AY)
 {
     AInstance->FIdentifier = LIdentifier;
     AInstance->FNode = Inq_Entity_GList.FBack;
     Inq_List_IPush(&Inq_Entity_GList);
     Inq_Entity_GList.FBack->FData = AInstance;
-    Inq_Entity_GStorageArray.FData[LIdentifier].FConstruct(&AInstance->FData , AX , AY);
+    Inq_Entity_GStorageArray.FData[LIdentifier].FConstruct(&AInstance->FData , AVariation , AX , AY);
+}
+
+Sint64 Inq_Entity_IGetIdentifier(void)
+{
+    return(Inq_Entity_GIdentifier);
 }
 
 bool Inq_Entity_IIsFilled(Inq_Entity_SInstance const*const AInstance)
 {
     return(AInstance->FIdentifier != 0);
+}
+
+Inq_Image_SInstance const* Inq_Entity_IGetPortrait(Inq_Entity_SInstance *const AEntity , Sint64 const AX , Sint64 const AY)
+{
+    return(Inq_Entity_GStorageArray.FData[AEntity->FIdentifier].FGetPortrait(&AEntity->FData , AX , AY));
+}
+
+Sint64 Inq_Entity_IGetTitle(Inq_Entity_SInstance *const AEntity , Sint64 const AX , Sint64 const AY)
+{
+    return(Inq_Entity_GStorageArray.FData[AEntity->FIdentifier].FGetTitle(&AEntity->FData , AX , AY));
+}
+
+Inq_Integral_SArray const* Inq_Entity_IGetPropertyArray(Inq_Entity_SInstance *const AEntity , Sint64 const AX , Sint64 const AY)
+{
+    return(Inq_Entity_GStorageArray.FData[AEntity->FIdentifier].FGetPropertyArray(&AEntity->FData , AX , AY));
+}
+
+Sint64 Inq_Entity_IGetDescription(Inq_Entity_SInstance *const AEntity , Sint64 const AX , Sint64 const AY)
+{
+    return(Inq_Entity_GStorageArray.FData[AEntity->FIdentifier].FGetDescription(&AEntity->FData , AX , AY));
 }
 
 void Inq_Entity_IUpdate(void)
@@ -68,7 +105,17 @@ void Inq_Entity_IUpdate(void)
     Inq_Entity_GNode = Inq_Entity_GList.FFront;
 }
 
-void Inq_Entity_IMove(Inq_Entity_SInstance const*const AEntity , Sint64 const AXOffset , Sint64 const AYOffset)
+bool Inq_Entity_ICanWork(Inq_Entity_SInstance *const AEntity , Sint64 const AX , Sint64 const AY)
+{
+    return(Inq_Entity_GStorageArray.FData[AEntity->FIdentifier].FCanWork(&AEntity->FData , AX , AY));
+}
+
+void Inq_Entity_IWork(Inq_Entity_SInstance *const AEntity , Sint64 const AX , Sint64 const AY)
+{
+    Inq_Entity_GStorageArray.FData[AEntity->FIdentifier].FWork(&AEntity->FData , AX , AY);
+}
+
+Inq_EntityData_UInstance * Inq_Entity_IWalk(Inq_Entity_SInstance const*const AEntity , Sint64 const AXOffset , Sint64 const AYOffset)
 {
     Sint64 LX;
     Sint64 LY;
@@ -76,8 +123,7 @@ void Inq_Entity_IMove(Inq_Entity_SInstance const*const AEntity , Sint64 const AX
     Inq_Partition_IGetPartition(LX + AXOffset , LY + AYOffset)->FEntity = Inq_Partition_IGetPartition(LX , LY)->FEntity;
     Inq_Partition_IGetPartition(LX , LY)->FEntity.FIdentifier = 0;
     Inq_Entity_IGetNode(&Inq_Partition_IGetPartition(LX + AXOffset , LY + AYOffset)->FEntity.FData)->FData = &Inq_Partition_IGetPartition(LX + AXOffset , LY + AYOffset)->FEntity;
-    Inq_Entity_SInstance const*const A = &Inq_Partition_IGetPartition(LX , LY)->FEntity;
-    Inq_Entity_SInstance const*const B = &Inq_Partition_IGetPartition(LX + AXOffset , LY + AYOffset)->FEntity;
+    return(&Inq_Partition_IGetPartition(LX + AXOffset , LY + AYOffset)->FEntity.FData);
 }
 
 Inq_Entity_SNode * Inq_Entity_IGetNode(Inq_EntityData_UInstance const*const AData)

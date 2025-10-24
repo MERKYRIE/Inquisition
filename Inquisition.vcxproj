@@ -32,7 +32,9 @@
     <ClInclude Include="_Input\_\INQCore.h" />
     <ClInclude Include="_Input\_\INQDebug.h" />
     <ClInclude Include="_Input\_\INQFont.h" />
+    <ClInclude Include="_Input\_\INQHuskRack.h" />
     <ClInclude Include="_Input\_\INQImage.h" />
+    <ClInclude Include="_Input\_\INQOre.h" />
     <ClInclude Include="_Input\_\INQSubHusk.h" />
     <ClInclude Include="_Input\_\INQKey.h" />
     <ClInclude Include="_Input\_\INQKeyboard.h" />
@@ -53,7 +55,9 @@
     <ClInclude Include="_Input\_\INQTime.h" />
     <ClInclude Include="_Input\_\INQTypeface.h" />
     <ClInclude Include="_Input\_\INQVideo.h" />
+    <ClInclude Include="_Input\_\INQWalking.h" />
     <ClInclude Include="_Input\_\INQWall.h" />
+    <ClInclude Include="_Input\_\INQWidget.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="_Input\_\INQAnimation.c" />
@@ -69,7 +73,9 @@
     <ClCompile Include="_Input\_\INQCore.c" />
     <ClCompile Include="_Input\_\INQDebug.c" />
     <ClCompile Include="_Input\_\INQFont.c" />
+    <ClCompile Include="_Input\_\INQHuskRack.c" />
     <ClCompile Include="_Input\_\INQImage.c" />
+    <ClCompile Include="_Input\_\INQOre.c" />
     <ClCompile Include="_Input\_\INQSubHusk.c" />
     <ClCompile Include="_Input\_\INQKey.c" />
     <ClCompile Include="_Input\_\INQKeyboard.c" />
@@ -90,7 +96,9 @@
     <ClCompile Include="_Input\_\INQTime.c" />
     <ClCompile Include="_Input\_\INQTypeface.c" />
     <ClCompile Include="_Input\_\INQVideo.c" />
+    <ClCompile Include="_Input\_\INQWalking.c" />
     <ClCompile Include="_Input\_\INQWall.c" />
+    <ClCompile Include="_Input\_\INQWidget.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

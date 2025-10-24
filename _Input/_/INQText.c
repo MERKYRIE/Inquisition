@@ -3,6 +3,7 @@
 void Inq_Text_IConstruct(Inq_Text_SInstance *const AInstance , TTF_Font *const AFont , Inq_String_SInstance const*const AString , Inq_String_SInstance const*const ALocalization)
 {
     Inq_String_IConstruct(&AInstance->FString , AString->FData);
+    Inq_String_IReplace(ALocalization , '_' , '\n');
     Inq_Debug_IAssertHandle(AInstance->FData = TTF_CreateText(Inq_Typeface_IGetEngine() , AFont , ALocalization->FData , ALocalization->FCount));
     Inq_Debug_IAssertCondition(TTF_SetTextColor(AInstance->FData , 100 , 100 , 100 , SDL_ALPHA_OPAQUE));
     Sint32 LWidth;

@@ -16,5 +16,5 @@ struct Inq_Frame_SArray
 void Inq_Frame_IConstruct(Inq_Frame_SInstance *const AInstance , Inq_String_SInstance const*const APath , double const ADuration);
 Sint32 Inq_Frame_ICompare(Inq_String_SInstance const*const APath , Inq_Frame_SInstance const*const AFrame);
 Sint32 Inq_Frame_ICompareFrame(Inq_Frame_SInstance const*const AA , Inq_Frame_SInstance const*const AB);
-void Inq_Frame_IDraw(Inq_Frame_SInstance const*const AInstance , Sint64 const AX , Sint64 const AY);
+bool Inq_Frame_IDraw(Inq_Frame_SInstance *const AInstance , double const ATimer , Sint64 const AX , Sint64 const AY , double const AXOffset , double const AYOffset);
 void Inq_Frame_IDeconstruct(Inq_Frame_SInstance *const AInstance);

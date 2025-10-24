@@ -16,9 +16,10 @@ Sint32 Inq_Frame_ICompareFrame(Inq_Frame_SInstance const*const AA , Inq_Frame_SI
     return(Inq_Sprite_ICompareSprite(&AA->FSprite , &AB->FSprite));
 }
 
-void Inq_Frame_IDraw(Inq_Frame_SInstance const*const AInstance , Sint64 const AX , Sint64 const AY)
+bool Inq_Frame_IDraw(Inq_Frame_SInstance *const AInstance , double const ATimer , Sint64 const AX , Sint64 const AY , double const AXOffset , double const AYOffset)
 {
-    Inq_Sprite_IDraw(&AInstance->FSprite , AX , AY);
+    Inq_Sprite_IDraw(&AInstance->FSprite , AX , AY , AXOffset , AYOffset);
+    return(ATimer >= AInstance->FDuration);
 }
 
 void Inq_Frame_IDeconstruct(Inq_Frame_SInstance *const AInstance)
