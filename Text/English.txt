@@ -268,9 +268,19 @@ Suffocation resistance 50%
 Repair speed +50%
 Embolden (innate): all friendly raider inside base gain +2 DPS, +50 repair speed and immunity to debilitating effects for 15 seconds
 Reduces enemy DPS by 1
-Originally a maintenance husk, presumed destroyed in a core rupture. Survived by merging with the station's systems and was later sanctified by the Technocult as a command entity. Capable of limited teleportation when displacement is essential.
-A crudely-built servant made of flesh and steel. Its brainstem has been surgically altered for reliability and ease of maintenance. This unit possesses only the most rudimentary mental faculties necessary for operation.
+Originally a maintenance husk, presumed destroyed in a core rupture._Survived by merging with the station's systems and was later sanctified by the Technocult as a command entity._Capable of limited teleportation when displacement is essential.
+A crudely-built servant made of flesh and steel._Its brainstem has been surgically altered for reliability and ease of maintenance._This unit possesses only the most rudimentary mental faculties necessary for operation.
 Optimized for time-sensitive applications of labor, their rapid maturation results in an inability to survive the stress of subspace translations.
 An industrial system repurposed by the Technocult to suit their artifact extraction expeditions.
 I wore the clothes, had the skills, numbers were high and yet. I still don't know what the wall is.
-I'm pretty sure at one point he literally just tells you to steal something. Like, just, "steal it."
+I'm pretty sure at one point it literally just tells you to steal something. Like, just, "steal it".
+Cybernetic
+Circuit-clad follower of the Divine Research and Construction Unit, known to outsiders as the Technocult.
+Interact with entities to explore all of your properties
+Ore: 0
+Ore: 1
+Ore: 2
+Ore: 3
+Ore: 4
+Ore: 5
+Ore: 5+
