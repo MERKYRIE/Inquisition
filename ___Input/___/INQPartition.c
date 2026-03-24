@@ -8,8 +8,8 @@ double Inq_Partition_GHeight;
 
 void Inq_Partition_IInitialize(void)
 {
-    Inq_Partition_GArrayWidth = 10;
-    Inq_Partition_GArrayHeight = 10;
+    Inq_Partition_GArrayWidth = 100;
+    Inq_Partition_GArrayHeight = 100;
     Inq_Array_IConstructSpace(&Inq_Partition_GArray , sizeof(Inq_Partition_SInstance) , Inq_Partition_GArrayWidth * Inq_Partition_GArrayHeight);
     Inq_Partition_GWidth = 0.1;
     Inq_Partition_GHeight = 0.1;

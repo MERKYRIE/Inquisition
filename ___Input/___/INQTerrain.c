@@ -6,7 +6,18 @@ void Inq_Terrain_IConstruct(Inq_Terrain_SInstance *const AInstance , Sint64 cons
     Inq_String_IConstruct(&LPath , "Terrain/");
     Inq_String_SInstance LIdentifier;
     Inq_String_IConstructVoid(&LIdentifier);
-    Inq_String_ISetIntegral(&LIdentifier , AIdentifier);
+    switch(AIdentifier)
+    {
+        case(-1):
+            Inq_String_ISetIntegral(&LIdentifier , SDL_rand(3));
+        break;
+        case(-2):
+            Inq_String_ISetIntegral(&LIdentifier , 3 + SDL_rand(3));
+        break;
+        default:
+            Inq_String_ISetIntegral(&LIdentifier , AIdentifier);
+        break;
+    }
     Inq_String_IAppend(&LPath , &LIdentifier);
     Inq_String_IDeconstruct(&LIdentifier);
     Inq_String_SInstance LExtension;
