@@ -1,6 +1,6 @@
 #include"INQCore.h"
 
-void Inq_Font_IConstruct(Inq_Font_SInstance *const AInstance , Inq_String_SInstance const*const APath , TTF_HorizontalAlignment const AAlignment)
+void Inq_Font_IConstruct(Inq_Font_SInstance *const AInstance , Inq_String_SInstance const*const APath , TTF_HorizontalAlignment const AAlignment , char const*const ALocalization)
 {
     Inq_String_IConstruct(&AInstance->FPath , Inq_String_IFind(APath , '/' , 1));
     Inq_Array_IConstructVoid(&AInstance->FTextArray , sizeof(Inq_Text_SInstance));
@@ -10,7 +10,7 @@ void Inq_Font_IConstruct(Inq_Font_SInstance *const AInstance , Inq_String_SInsta
     Inq_File_SInstance LEnglishFile;
     Inq_File_IConstruct(&LEnglishFile , "Text/English.txt");
     Inq_File_SInstance LRussianFile;
-    Inq_File_IConstruct(&LRussianFile , "Text/Russian.txt");
+    Inq_File_IConstruct(&LRussianFile , ALocalization);
     Inq_String_SInstance LEnglishString;
     Inq_String_IConstructVoid(&LEnglishString);
     Inq_String_SInstance LRussianString;

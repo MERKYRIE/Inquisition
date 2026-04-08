@@ -98,6 +98,11 @@ Inq_Image_SInstance const* Inq_Player_IGetPortrait(Inq_EntityData_UInstance *con
 
 bool Inq_Player_IUpdate(Inq_EntityData_UInstance *const AData , Sint64 const AX , Sint64 const AY)
 {
+    if(Inq_Keyboard_IGetKey(SDL_SCANCODE_P)->FIsPressed)
+    {
+        Inq_Typeface_IDeinitialize();
+        Inq_Typeface_IInitialize("Text/English.txt");
+    }
     for(Sint64 LIndex = 0 ; LIndex < AData->FPlayer.FWidgetArray.FCount ; LIndex++)
     {
         Inq_Widget_IDraw(&AData->FPlayer.FWidgetArray.FData[LIndex]);

@@ -14,7 +14,7 @@ struct Inq_Font_SArray
     Sint64 FCount;
 };
 
-void Inq_Font_IConstruct(Inq_Font_SInstance *const AInstance , Inq_String_SInstance const*const APath , TTF_HorizontalAlignment const AAlignment);
+void Inq_Font_IConstruct(Inq_Font_SInstance *const AInstance , Inq_String_SInstance const*const APath , TTF_HorizontalAlignment const AAlignment , char const*const ALocalization);
 Sint32 Inq_Font_ICompare(Inq_String_SInstance const*const APath , Inq_Font_SInstance const*const AFont);
 Sint32 Inq_Font_ICompareFont(Inq_Font_SInstance const*const AA , Inq_Font_SInstance const*const AB);
 Inq_Text_SInstance const* Inq_Font_ISearch(Inq_Font_SInstance const*const AInstance , Sint64 const AIdentifier);

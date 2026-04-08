@@ -4,7 +4,7 @@ TTF_TextEngine * Inq_Typeface_GEngine;
 double Inq_Font_GGetLineSkip;
 Inq_Font_SArray Inq_Typeface_GFontArray;
 
-void Inq_Typeface_IInitialize(void)
+void Inq_Typeface_IInitialize(char const*const ALocalization)
 {
     Inq_Debug_IAssertCondition(TTF_Init());
     Inq_Debug_IAssertHandle(Inq_Typeface_GEngine = TTF_CreateRendererTextEngine(Inq_Video_IGetRenderer()));
@@ -15,21 +15,21 @@ void Inq_Typeface_IInitialize(void)
     Inq_Array_IAdjust(&Inq_Typeface_GFontArray , Inq_Typeface_GFontArray.FCount + LGlob.FCount);
     for(Sint64 LIndex = 0 ; LIndex < LGlob.FCount ; LIndex++)
     {
-        Inq_Font_IConstruct(&Inq_Typeface_GFontArray.FData[(Inq_Typeface_GFontArray.FCount - 1) - LIndex] , &LGlob.FData[LIndex] , TTF_HORIZONTAL_ALIGN_CENTER);
+        Inq_Font_IConstruct(&Inq_Typeface_GFontArray.FData[(Inq_Typeface_GFontArray.FCount - 1) - LIndex] , &LGlob.FData[LIndex] , TTF_HORIZONTAL_ALIGN_CENTER , ALocalization);
     }
     Inq_Glob_IDeconstruct(&LGlob);
     Inq_Glob_IConstruct(&LGlob , "Font/Left" , "ttf");
     Inq_Array_IAdjust(&Inq_Typeface_GFontArray , Inq_Typeface_GFontArray.FCount + LGlob.FCount);
     for(Sint64 LIndex = 0 ; LIndex < LGlob.FCount ; LIndex++)
     {
-        Inq_Font_IConstruct(&Inq_Typeface_GFontArray.FData[(Inq_Typeface_GFontArray.FCount - 1) - LIndex] , &LGlob.FData[LIndex] , TTF_HORIZONTAL_ALIGN_LEFT);
+        Inq_Font_IConstruct(&Inq_Typeface_GFontArray.FData[(Inq_Typeface_GFontArray.FCount - 1) - LIndex] , &LGlob.FData[LIndex] , TTF_HORIZONTAL_ALIGN_LEFT , ALocalization);
     }
     Inq_Glob_IDeconstruct(&LGlob);
     Inq_Glob_IConstruct(&LGlob , "Font/Right" , "ttf");
     Inq_Array_IAdjust(&Inq_Typeface_GFontArray , Inq_Typeface_GFontArray.FCount + LGlob.FCount);
     for(Sint64 LIndex = 0 ; LIndex < LGlob.FCount ; LIndex++)
     {
-        Inq_Font_IConstruct(&Inq_Typeface_GFontArray.FData[(Inq_Typeface_GFontArray.FCount - 1) - LIndex] , &LGlob.FData[LIndex] , TTF_HORIZONTAL_ALIGN_RIGHT);
+        Inq_Font_IConstruct(&Inq_Typeface_GFontArray.FData[(Inq_Typeface_GFontArray.FCount - 1) - LIndex] , &LGlob.FData[LIndex] , TTF_HORIZONTAL_ALIGN_RIGHT , ALocalization);
     }
     Inq_Glob_IDeconstruct(&LGlob);
     Inq_Array_ISort(&Inq_Typeface_GFontArray , &Inq_Font_ICompareFont);

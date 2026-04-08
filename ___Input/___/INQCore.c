@@ -11,7 +11,7 @@ void Inq_Core_IInitialize(void)
     Inq_Debug_IAssertCondition(SDL_Init(SDL_INIT_VIDEO));
     Inq_Video_IInitialize();
     Inq_Atlas_IInitialize();
-    Inq_Typeface_IInitialize();
+    Inq_Typeface_IInitialize("Text/Russian.txt");
     Inq_Keyboard_IInitialize();
     Inq_Entity_IInitialize();
     Inq_Player_IInitialize();
